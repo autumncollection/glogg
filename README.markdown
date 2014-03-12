@@ -1,6 +1,6 @@
 # GLogg - Another custom logging gem
 
-+ [github project] (https://github.com/geronime/glogg)
++ Original GitHub project by Jirka Nemecek: [github project] (https://github.com/geronime/glogg)
 
 GLogg is another custom logging gem with multiple debug log levels.
 
@@ -32,10 +32,12 @@ To query/set different settings you can use:
     GLogg.log_level = level
     GLogg.log_path = destination
     GLogg.ini destination, level
+    GLogg.set_log_to_variable true
 
 * `destination` may be one of `$stdout`, `$stderr`, `nil`, log file path
   (`nil` is the default `$stderr`)
 * `level` is one of previously listed log level
+* `variable` is default set to false. In case of logging into variable, set to true.
 
 ### Logging
 
@@ -49,6 +51,17 @@ get logged
   * simmilarly methods `log_e`,...
 * shortcut methods where the message is passed in block which is executed
   only if the message is to be logged in the end: `GLogg.l_f{msg}`, etc.
+
+#### Loging into variable
+
+Initialization
+
+    GLogg.set_log_to_variable true
+    GLogg.ini nil, GLogg::L_INF, true
+
+and when we need to print messages
+
+    GLogg.get_message
 
 #### Examples
 
@@ -94,6 +107,7 @@ and it is decided the message is to be logged at all.
 
 ## Changelog
 
++ __0.0.3__: cache logging messages into variable (no output to files)
 + __0.0.2__: shortcut methods with message in block, docs written
 + __0.0.1__: first revision
 
